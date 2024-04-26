@@ -1,21 +1,24 @@
 package harry.todolistproject;
 
-import java.util.Scanner;
-
 public class AssignmentInput {
 
     private String className;
     private String classNumber;
     private String assignmentName;
     private String dueDate;
+    private boolean validClassName;
+    private boolean validDueDate;
 
 
     public AssignmentInput (String userClassName, String userClassNumber, String userAssignmentName, String userDueDate) {
 
+        validClassName = true;
+        validDueDate = true;
+
         if (validName(userClassName)) {
             this.className = userClassName;
         } else {
-            System.out.println("fuck you");
+            validClassName = false;
         }
 
         this.classNumber = userClassNumber;
@@ -25,7 +28,7 @@ public class AssignmentInput {
         if (validDate(userDueDate)) {
             this.dueDate = userDueDate;
         } else {
-            System.out.println("fuck you");
+            validDueDate = false;
         }
 
     }
@@ -88,8 +91,15 @@ public class AssignmentInput {
         return (validFormat && validDate);
     }
 
-    public AssignmentLog createAssignmentLog () {
-        return new AssignmentLog(this.className, this.classNumber, this.assignmentName, this.dueDate);
+    public Assignment createAssignmentLog () {
+        return new Assignment(this.className, this.classNumber, this.assignmentName, this.dueDate);
     }
 
+    public boolean isValidClassName () {
+        return validClassName;
+    }
+
+    public boolean isValidDueDate () {
+        return validDueDate;
+    }
 }
