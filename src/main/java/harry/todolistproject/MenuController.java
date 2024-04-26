@@ -17,6 +17,8 @@ public class MenuController {
     private TextField UserAssignmentName;
     @FXML
     private TextField UserDueDate;
+    @FXML
+    private Label errorLabel;
 
     @FXML
     public void AddAssignmentClick (ActionEvent event) throws IOException {
@@ -25,8 +27,20 @@ public class MenuController {
         String assignmentName = UserAssignmentName.getText();
         String dueDate = UserDueDate.getText();
 
+        Assignment assignment = addAssignment(className, classNumber, assignmentName, dueDate);
+    }
+
+    public Assignment addAssignment (String className, String classNumber, String assignmentName, String dueDate) {
         AssignmentInput assignmentInput = new AssignmentInput(className, classNumber, assignmentName, dueDate);
-        AssignmentLog assignment = assignmentInput.createAssignmentLog();
-        System.out.println(assignment.displayLog());
+
+        if (!assignmentInput.isValidClassName()) {
+            errorLabel.setText("Class name must have 4 letters (e.g. \"math\")");
+        } else if (!assignmentInput.isValidDueDate()) {
+            errorLabel.setText("Date must be in yy/mm/dd format. (e.g. for March 11th 2016: \"16/03/11\")");
+        } else {
+            return assignmentInput.createAssignmentLog();
+        }
+
+        return null;
     }
 }
