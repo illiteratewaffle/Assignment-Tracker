@@ -28,6 +28,8 @@ public class MenuController {
         String dueDate = UserDueDate.getText();
 
         Assignment assignment = addAssignment(className, classNumber, assignmentName, dueDate);
+
+        WriteFile.log(assignment);
     }
 
     public Assignment addAssignment (String className, String classNumber, String assignmentName, String dueDate) {
