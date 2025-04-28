@@ -1,0 +1,1 @@
+This project started because I was fed up with all the commercially available time management applications. They're all missing an important aspect that I wanted so I decided to create one myself. Eventually I found a "Gantt chart" Excel sheet online and that did me well for a while. This project was then abandoned.
